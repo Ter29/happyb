@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вікторина</title>
+    <link rel="stylesheet" href="../css/page2.css">
+</head>
+<body>
+    <div class="mandarin-counter">
+        <div class="counter-display" id="counter"></div>
+    </div>
+    <div class="container">
+        <h1>🎉 Вітаю! 🎉</h1>
+        <p>Лічилник в правому верхньому куті - фіксуїться на всіх сторінках</p>
+        <p>Мандаринки це теж твоя валюта, користуйся з нею з розумом</p>
+        <div class="buttons-section">
+            <button id="rules-btn" class="modal-btn">📖 Правила</button>
+            <button id="login-btn" class="modal-btn">🔐 Логін</button>
+        </div>
+        
+        <div id="rules-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📖 Правила</h2>
+                    <button class="close-btn" data-modal="rules-modal">Назад&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>1. Пройти свою привітальну відкритку</p>
+                    <p>2. Постаратися зберегти чим більше мандаринок до фіналу</p>
+                    <p>3. Думати добре, бо гра розроблена під наглядом Васьківа Андрія, тому і контингент користувачів відповідний</p>
+                    <p>4. Постаратися не ламати привітальну відкритку, вона дуже чутлива і ніхто не застрахований від багів</p>
+                    <p>5. Намагатися кайфанути від процесу, а якщо і не кайфанеш, то хоча б зробити вигляд</p>
+                    <p>Ну і удачі!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="login-modal" class="modal">
+            <div class="login-container">
+                <div class="login-left">
+                    <h2>Вхід у аккаунт</h2>
+                    <div class="login-form">
+                        <input type="text" placeholder="Логін" class="steam-input" id="login-input">
+                        <input type="password" placeholder="Пароль" class="steam-input" id="password-input">
+                        <button class="steam-login-btn" id="steam-login-btn">Увійти у аккаунт Steam</button>
+                    </div>
+                    <button class="close-login-btn" data-modal="login-modal">Закрити</button>
+                </div>
+                <div class="login-right">
+                    <div class="hint-box">
+                        <h3>� Підказка (Логін)</h3>
+                        <p class="hint-cost">🍊 Коштує 1 мандаринку</p>
+                        <div id="hint-content-1" class="hint-text">
+                            <button id="buy-hint-btn-1" class="buy-hint-btn">Купити підказку</button>
+                        </div>
+                    </div>
+                    <div class="hint-box">
+                        <h3>📖 Підказка (Пароль)</h3>
+                        <p class="hint-cost">🍊 Коштує 1 мандаринку</p>
+                        <div id="hint-content-2" class="hint-text">
+                            <button id="buy-hint-btn-2" class="buy-hint-btn">Купити підказку</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/counter.js"></script>
+    <script src="../js/page2.js"></script>
+</body>
+</html>

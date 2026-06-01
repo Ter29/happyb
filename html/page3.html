@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фінал</title>
+    <link rel="stylesheet" href="../css/page3.css">
+</head>
+<body>
+    <div class="mandarin-counter">
+        <div class="counter-display" id="counter"></div>
+    </div>
+    <div class="container">
+        <h1>🎉 Вхід успішний! 🎉</h1>
+        <p>Ти перейшов на наступний етап вікторини.</p>
+        <div class="choice-panel">
+            <p>На жаль можна вибрати лише 1 варіант</p>
+            <label class="choice-option" for="lidiia-choice">
+                <input type="radio" id="lidiia-choice" name="answer" value="lidiia" checked>
+                <span>Лідія Гербак</span>
+            </label>
+            <label class="choice-option" for="vlad-choice">
+                <input type="radio" id="vlad-choice" name="answer" value="vlad">
+                <span>Влад Шукель</span>
+            </label>
+            <button class="answer-btn" id="submit-answer-btn">Надати відповідь</button>
+        </div>
+    </div>
+
+    <div class="modal" id="wrong-answer-modal">
+        <div class="simple-modal-content">
+            <p>Невірно, оберіть інший варіант</p>
+            <button class="answer-btn" id="close-wrong-modal-btn">Ок</button>
+        </div>
+    </div>
+
+    <div class="explosion-overlay" id="success-overlay">
+        <div class="explosion-burst"></div>
+        <img src="../img/vladSmall.jpg" alt="Влад Шукель" class="success-photo">
+        <p>Правильно!</p>
+    </div>
+
+    <script src="../js/counter.js"></script>
+    <script src="../js/page3.js"></script>
+</body>
+</html>
