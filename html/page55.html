@@ -27,7 +27,21 @@
         <div class="photo-window">
             <button class="close-viewer-btn" id="close-viewer-btn">Закрити</button>
             <img src="../img/IMG_20181226_084322.jpg" alt="Фото з папки" id="viewer-photo">
+            <div class="text-file-content" id="viewer-text"></div>
+            <button class="buy-text-hint-btn is-hidden" id="buy-text-hint-btn">Купити підказку за 1 🍊</button>
             <p id="viewer-caption"></p>
+        </div>
+    </div>
+
+    <div class="password-modal" id="password-modal">
+        <div class="password-window">
+            <h2 id="password-title">Введіть пароль</h2>
+            <input type="password" id="folder-password-input" placeholder="Пароль">
+            <p class="password-error" id="password-error"></p>
+            <div class="password-actions">
+                <button id="password-cancel-btn">Скасувати</button>
+                <button id="password-submit-btn">Відкрити</button>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,1 @@
+const pageMaxMandarins = 7;

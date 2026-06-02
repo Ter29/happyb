@@ -140,6 +140,68 @@ body {
     display: flex;
 }
 
+.password-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 220;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.78);
+}
+
+.password-modal.active {
+    display: flex;
+}
+
+.password-window {
+    width: min(420px, calc(100vw - 32px));
+    padding: 24px;
+    border: 1px solid #3d4658;
+    border-radius: 8px;
+    background: #171b22;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+}
+
+.password-window h2 {
+    margin-bottom: 16px;
+    font-size: 22px;
+}
+
+.password-window input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #4b5568;
+    border-radius: 6px;
+    background: #101318;
+    color: #e9edf5;
+    font-size: 16px;
+}
+
+.password-error {
+    min-height: 22px;
+    margin-top: 10px;
+    color: #ff8585;
+}
+
+.password-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.password-actions button {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #4b5568;
+    border-radius: 6px;
+    background: #2a3140;
+    color: #e9edf5;
+    font-size: 15px;
+    cursor: pointer;
+}
+
 .photo-window {
     width: min(820px, calc(100vw - 32px));
     padding: 18px;
@@ -157,6 +219,115 @@ body {
     object-fit: contain;
     border-radius: 6px;
     background: #0d1015;
+}
+
+.photo-window .is-hidden {
+    display: none;
+}
+
+.buy-text-hint-btn {
+    display: block;
+    width: min(320px, 100%);
+    margin: 16px auto 0;
+    padding: 12px 18px;
+    border: 1px solid #f5b94b;
+    border-radius: 6px;
+    background: #f08a24;
+    color: #1e2430;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buy-text-hint-btn:hover {
+    background: #ff9d36;
+}
+
+.text-file-content {
+    width: 100%;
+    min-height: 260px;
+    margin-top: 16px;
+    padding: 24px;
+    border-radius: 6px;
+    background: #f4f0df;
+    color: #1e2430;
+    text-align: left;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.text-file-content.redacted-file {
+    position: relative;
+    background: #f8f3df;
+    color: transparent;
+    overflow: hidden;
+}
+
+.text-file-content.invisible-file {
+    color: #f4f0df;
+}
+
+.text-file-content.invisible-file::selection {
+    color: #1e2430;
+    background: #f5d76e;
+}
+
+.text-file-content.redacted-file::before {
+    content: "CLASSIFIED";
+    position: absolute;
+    top: 170px;
+    right: 18px;
+    padding: 6px 10px;
+    border: 2px solid #8b1e1e;
+    color: #8b1e1e;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    transform: rotate(-24deg);
+}
+
+.redacted-word {
+    position: relative;
+    display: inline-block;
+    margin: 0 8px 14px 0;
+    color: transparent;
+}
+
+.redacted-word::after {
+    content: "";
+    position: absolute;
+    left: -3px;
+    right: -3px;
+    top: 50%;
+    height: 1.1em;
+    border-radius: 4px;
+    background: #111;
+    transform: translateY(-50%) rotate(-1deg);
+    box-shadow:
+        0 2px 0 rgba(0, 0, 0, 0.8),
+        inset 0 3px 0 rgba(255, 255, 255, 0.06);
+    animation: markerSwipe 0.55s ease forwards;
+    transform-origin: left center;
+}
+
+.redacted-word:nth-child(2n)::after {
+    transform: translateY(-50%) rotate(1.5deg);
+}
+
+.redacted-word:nth-child(3n)::after {
+    background: #1b1b1b;
+    transform: translateY(-50%) rotate(-2deg);
+}
+
+@keyframes markerSwipe {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
 }
 
 .photo-window p {
