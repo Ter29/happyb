@@ -227,6 +227,23 @@ body {
     font-size: 18px;
 }
 
+.next-game-link {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    background: #2a3140;
+    color: #eef3ff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.next-game-link:hover {
+    background: #343d50;
+}
+
 @media (max-width: 620px) {
     .bet-row,
     .choice-row {

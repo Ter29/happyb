@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(240, 138, 36, 0.32), transparent 32%),
+        #101318;
+    color: #eef3ff;
+    font-family: Arial, sans-serif;
+}
+
+.mandarin-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+
+.counter-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-width: 96px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.greeting-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 96px 16px 40px;
+}
+
+.greeting-card {
+    width: min(720px, 100%);
+    padding: 34px;
+    border: 1px solid #303746;
+    border-radius: 8px;
+    background: #171b22;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.greeting-card h1 {
+    margin-bottom: 16px;
+    font-size: clamp(44px, 8vw, 78px);
+}
+
+.greeting-card p {
+    color: #c7d0df;
+    font-size: 20px;
+    line-height: 1.45;
+}
+
+.bonus-controls {
+    display: grid;
+    grid-template-columns: auto minmax(120px, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    margin: 28px 0 18px;
+}
+
+.bonus-controls label {
+    color: #c7d0df;
+    font-weight: bold;
+}
+
+.bonus-controls input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #3d4658;
+    border-radius: 6px;
+    background: #101318;
+    color: #eef3ff;
+    font-size: 18px;
+}
+
+.bonus-controls button {
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 6px;
+    background: #f08a24;
+    color: #171b22;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bonus-message {
+    min-height: 28px;
+}
+
+@media (max-width: 620px) {
+    .bonus-controls {
+        grid-template-columns: 1fr;
+    }
+}

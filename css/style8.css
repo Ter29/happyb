@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #0f1720;
+    color: #eef3ff;
+    font-family: Arial, sans-serif;
+}
+
+.mandarin-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+
+.counter-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-width: 96px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.flight-game {
+    width: min(980px, calc(100vw - 32px));
+    margin: 96px auto 40px;
+}
+
+.flight-header {
+    margin-bottom: 24px;
+}
+
+.flight-header h1 {
+    font-size: clamp(42px, 8vw, 76px);
+    margin-bottom: 8px;
+}
+
+.flight-header p {
+    color: #aeb7c8;
+    font-size: 20px;
+}
+
+.flight-stage {
+    position: relative;
+    height: min(520px, 58vh);
+    min-height: 360px;
+    overflow: hidden;
+    border: 1px solid #304158;
+    border-radius: 8px;
+    background:
+        linear-gradient(180deg, rgba(73, 170, 255, 0.26), rgba(15, 23, 32, 0.2)),
+        #101927;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.flight-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 52px 52px;
+    opacity: 0.55;
+}
+
+.multiplier-display {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(56px, 13vw, 130px);
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.88);
+    text-shadow: 0 10px 36px rgba(0, 0, 0, 0.45);
+}
+
+.plane {
+    position: absolute;
+    left: 12%;
+    bottom: 12%;
+    z-index: 3;
+    font-size: clamp(44px, 9vw, 88px);
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.45));
+    transition: left 0.05s linear, bottom 0.05s linear, transform 0.05s linear;
+}
+
+.flight-stage.flying .plane {
+    animation: planeVibration 0.12s infinite alternate;
+}
+
+.flight-stage.crashed .plane {
+    animation: crashFall 0.65s ease forwards;
+}
+
+.flight-stage.won {
+    box-shadow: 0 0 42px rgba(47, 191, 113, 0.38);
+}
+
+.crash-text {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    transform: translate(-50%, -50%);
+    color: #ff6262;
+    font-size: clamp(28px, 7vw, 64px);
+    font-weight: bold;
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.flight-panel {
+    margin-top: 22px;
+    padding: 22px;
+    border: 1px solid #303746;
+    border-radius: 8px;
+    background: #171b22;
+}
+
+.flight-inputs {
+    display: grid;
+    grid-template-columns: minmax(140px, 1fr) minmax(140px, 1fr) auto auto;
+    gap: 12px;
+    align-items: end;
+    margin-bottom: 18px;
+}
+
+.flight-inputs label {
+    display: grid;
+    gap: 8px;
+    color: #c7d0df;
+    font-weight: bold;
+}
+
+.flight-inputs input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #3d4658;
+    border-radius: 6px;
+    background: #101318;
+    color: #eef3ff;
+    font-size: 18px;
+}
+
+.quick-btn,
+.start-flight-btn {
+    border: 0;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.quick-btn {
+    padding: 12px 16px;
+    background: #2a3140;
+    color: #eef3ff;
+}
+
+.start-flight-btn {
+    width: 100%;
+    min-height: 56px;
+    background: #f08a24;
+    color: #171b22;
+    font-size: 22px;
+}
+
+.start-flight-btn:disabled,
+.quick-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.flight-result {
+    min-height: 28px;
+    margin-top: 16px;
+    color: #c7d0df;
+    text-align: center;
+    font-size: 18px;
+}
+
+.page9-link {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    background: #2a3140;
+    color: #eef3ff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.page9-link:hover {
+    background: #343d50;
+}
+
+@keyframes planeVibration {
+    from {
+        margin-bottom: -2px;
+    }
+    to {
+        margin-bottom: 3px;
+    }
+}
+
+@keyframes crashFall {
+    to {
+        transform: translateY(180px) rotate(120deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .flight-inputs {
+        grid-template-columns: 1fr;
+    }
+}

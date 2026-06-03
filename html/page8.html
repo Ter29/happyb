@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandarin Flight</title>
+    <link rel="stylesheet" href="../css/style8.css">
+</head>
+<body>
+    <div class="mandarin-counter">
+        <div class="counter-display" id="counter"></div>
+    </div>
+
+    <main class="flight-game">
+        <section class="flight-header">
+            <h1>Mandarin Flight. </h1>
+            <p>ну згадай той вайб, качелі, я сливаю і апаю, юра черерез 1.01х грає, а тут такого нема xD</p>
+        </section>
+
+        <section class="flight-stage" id="flight-stage">
+            <div class="flight-grid"></div>
+            <div class="crash-text" id="crash-text"></div>
+            <div class="multiplier-display" id="multiplier-display">1.00x</div>
+            <div class="plane" id="plane">✈</div>
+        </section>
+
+        <section class="flight-panel">
+            <div class="flight-inputs">
+                <label>
+                    Ставка
+                    <input id="flight-bet-input" type="number" min="1" step="1" value="1">
+                </label>
+                <label>
+                    Коефіцієнт
+                    <input id="target-coefficient-input" type="number" min="1.1" max="20" step="0.1" value="2.0">
+                </label>
+                <button class="quick-btn" id="flight-half-btn">1/2</button>
+                <button class="quick-btn" id="flight-max-btn">MAX</button>
+            </div>
+
+            <button class="start-flight-btn" id="start-flight-btn">Запустити літачок</button>
+            <p class="flight-result" id="flight-result">Очікування запуску...</p>
+            <a class="page9-link" href="page9.html">Перейти до привітання</a>
+        </section>
+    </main>
+
+    <script src="../js/counter.js"></script>
+    <script src="../js/page8.js"></script>
+</body>
+</html>

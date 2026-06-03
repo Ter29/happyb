@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Привітання</title>
+    <link rel="stylesheet" href="../css/style9.css">
+</head>
+<body>
+    <div class="mandarin-counter">
+        <div class="counter-display" id="counter"></div>
+    </div>
+
+    <main class="greeting-page">
+        <section class="greeting-card">
+            <h1>Вітаю!</h1>
+            <p>Ти дійшов до бонусної сторінки. Тут можна трохи поповнити запас мандаринок і продовжити цей прекрасний хаос.</p>
+
+            <div class="bonus-controls">
+                <label for="mandarin-add-input">Скільки додати</label>
+                <input id="mandarin-add-input" type="number" min="1" max="99" step="1" value="1">
+                <button id="add-mandarin-btn">Додати мандаринки</button>
+            </div>
+
+            <p class="bonus-message" id="bonus-message">Нехай мандаринки будуть з тобою.</p>
+        </section>
+        <video width="640" height="360" controls>
+            <source src="../img/IMG_5024.MOV" type="video/mp4">
+
+        </video>
+    </main>
+
+    <script src="../js/counter.js"></script>
+    <script src="../js/page9.js"></script>
+</body>
+</html>
