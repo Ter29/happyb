@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandarin Double</title>
+    <link rel="stylesheet" href="../css/style77.css">
+</head>
+<body>
+    <div class="mandarin-counter">
+        <div class="counter-display" id="counter"></div>
+    </div>
+
+    <main class="double-game">
+        <section class="game-header">
+            <h1>Mandarin Double</h1>
+            <p>Постав мандаринки, вибери сектор і крути колесо.</p>
+        </section>
+
+        <section class="wheel-shell">
+            <div class="wheel-pointer"></div>
+            <div class="wheel-window">
+                <div class="wheel-track" id="wheel-track"></div>
+            </div>
+        </section>
+
+        <section class="bet-panel">
+            <div class="bet-row">
+                <label for="bet-input">Ставка</label>
+                <input id="bet-input" type="number" min="1" step="1" value="1">
+                <button class="quick-btn" id="half-btn">1/2</button>
+                <button class="quick-btn" id="max-btn">MAX</button>
+            </div>
+
+            <div class="choice-row">
+                <button class="choice-btn red-choice selected" data-choice="red">
+                    x2
+                    <span>червоне</span>
+                </button>
+                <button class="choice-btn black-choice" data-choice="black">
+                    x2
+                    <span>чорне</span>
+                </button>
+                <button class="choice-btn green-choice" data-choice="green">
+                    x14
+                    <span>мандарин</span>
+                </button>
+            </div>
+
+            <button class="spin-btn" id="spin-btn">Крутити</button>
+            <p class="result-text" id="result-text">Очікування ставки...</p>
+            <button></button>
+        </section>
+    </main>
+
+    <script src="../js/counter.js"></script>
+    <script src="../js/page77.js"></script>
+</body>
+</html>

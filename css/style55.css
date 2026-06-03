@@ -42,6 +42,35 @@ body {
     white-space: nowrap;
 }
 
+.shakeable-counter {
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.shakeable-counter.is-dragging {
+    cursor: grabbing;
+    box-shadow: 0 0 24px rgba(255, 170, 64, 0.75);
+}
+
+.shakeable-counter.is-dragging .counter-display {
+    animation: counterShake 0.12s linear infinite;
+}
+
+.mandarin-dropped .counter-display {
+    box-shadow: 0 0 18px rgba(255, 154, 38, 0.85);
+}
+
+.dropped-mandarin {
+    position: fixed;
+    top: 72px;
+    right: 58px;
+    z-index: 300;
+    font-size: 44px;
+    pointer-events: none;
+    animation: mandarinDrop 1.6s ease forwards;
+}
+
 .file-explorer {
     width: min(920px, calc(100vw - 32px));
     margin: 96px auto 40px;
@@ -327,6 +356,36 @@ body {
     }
     to {
         clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes counterShake {
+    0% {
+        transform: rotate(-2deg);
+    }
+    50% {
+        transform: rotate(2deg);
+    }
+    100% {
+        transform: rotate(-2deg);
+    }
+}
+
+@keyframes mandarinDrop {
+    0% {
+        transform: translateY(-10px) scale(0.4) rotate(0deg);
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(150px) scale(1.15) rotate(260deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(190px) scale(0.9) rotate(340deg);
+        opacity: 0;
     }
 }
 

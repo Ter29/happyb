@@ -16,17 +16,18 @@ const passwordCancelBtn = document.getElementById('password-cancel-btn');
 const passwordSubmitBtn = document.getElementById('password-submit-btn');
 
 const pageMaxMandarins = 5;
+const shakenMandarinKey = 'page55CounterShakenMandarin';
 const almostFileOpenedKey = 'folder8AlmostOpened';
 const revealedTextFile = textFile(
     'щось новеньке?.txt',
-    `Тут реально з'явилося щось новеньке 54`
+    `Тут реально з'явилося щось новеньке 1) 54`
 );
 
 // Паролі для папок міняються тут.
 // Наприклад: folder2: '1234', folder4: 'abcd'
 const folderPasswords = {
     folder2: '9754',
-    folder4: '7854'
+    folder4: '540378'
 };
 
 const photos = {
@@ -37,7 +38,10 @@ const photos = {
     orkh_turan: '../img/orkh_turan.jpg',
     alt1: '../img/altgirl1.jpg',
     alt2: '../img/altgirl2.jpg',
-    alt3: '../img/altgirl3.jpg'
+    alt3: '../img/altgirl3.jpg',
+    lub1: '../img/lubmem1.jpg',
+    lub2: '../img/lubmem2.jpg',
+    u_ul1: '../img/ura_ulia1.jpg'
 };
 
 function folder(name, children = []) {
@@ -48,8 +52,8 @@ function protectedFolder(name, passwordKey, children = []) {
     return { name, type: 'folder', passwordKey, children };
 }
 
-function photo(name, src) {
-    return { name, type: 'photo', src };
+function photo(name, src, options = {}) {
+    return { name, type: 'photo', src, ...options };
 }
 
 function textFile(name, text, options = {}) {
@@ -79,14 +83,14 @@ const fileSystem = folder('folder 1', [
     protectedFolder('folder 2', 'folder2', [
         textFile('passwords.txt', 'Ніяких мандаринок тут немає. Серйозно.'),
         folder('folder 10', [
-            textFile('якісь циферки.txt', '03')
+            textFile('якісь циферки.txt', '2) 03')
         ])
     ]),
     folder('folder 3', [
         textFile('important.txt', 'Важлива інформація: тут ти нічого не знайдеш.'),
         photo('fake-important.jpg', photos.colage1),
         folder('folder 6', [
-            textFile('empty.txt', 'А файл не такий вже й порожній.', { invisible: true }),
+            textFile('empty.txt', 'А файл не такий вже й порожній. Мандаринка, до речі, захована в мандаринках, але не все так просто', { invisible: true }),
             photo('empty-proof.jpg')
         ])
     ]),
@@ -94,17 +98,17 @@ const fileSystem = folder('folder 1', [
         textFile('!!!.txt', 'Бачиш фото, не відкривай, вчися на своїх помилках.'),
         photo('warning.jpg', photos.alt3),
         folder('folder 1', [
-            textFile('again.txt', 'Так, це знову folder 1. Лабіринт має право бути нахабним.'),
-            photo('again.jpg', photos.orhan)
+            textFile('text.txt', 'Думаю десь тут буде вихід. І ще питання: ти знайшов всі мандаринки?'),
+            photo('again.jpg', photos.orhan, { redirectTo: '../html/page66.html' })
         ])
     ]),
     folder('folder 5', [
-        textFile('secret.txt', 'Ти додумався скопіювати текст, а ти не промах. 78', { redacted: true }),
+        textFile('secret.txt', 'Ти додумався скопіювати текст, а ти не промах. 3) 78', { redacted: true }),
         photo('secret.jpg', photos.mandaryn)
     ]),
     folder('folder 6', [
         textFile('анекдот.txt', 'Знайшов єврей пачку доларів, а там не хватає.'),
-        photo('map.jpg', photos.alt2)
+        photo('lubchyk.jpg', photos.lub1)
     ]),
     folder('folder 7', [
         textFile('Тобі сюди.txt', 'Ти тут, як неочікувано. Шукай папку з назвою яка виділяється.'),
@@ -127,15 +131,15 @@ const fileSystem = folder('folder 1', [
         textFile('almost.txt', 'Вернися в папку 1, присядь 10 раз, побачиш результат.', {
             revealFileKey: almostFileOpenedKey
         }),
-        photo('almost-no.jpg', photos.alt2)
+        photo('Не повіриш, знову Любчик.jpg', photos.lub2)
     ]),
     folder('folder 9', [
-        textFile('note.txt', 'folder 9 існує тільки щоб збивати з пантелику.'),
-        photo('confusion.jpg', photos.alt1)
+        textFile('note.txt', 'Засуджую всі фото, які ти тут побачив, найкраще фото і наймиліша пара в наступному фото ❤️'),
+        photo('Не вір тексту і не відкривай🛑.jpg', photos.u_ul1)
     ]),
     folder('folder 10', [
         textFile('system.txt', 'SYSTEM: користувач пішов не туди.'),
-        photo('system.jpg', photos.alt3)
+        photo('Тут знову ті дури.jpg', photos.alt3)
     ]),
     folder('folder 11', [
         textFile('lonely.txt', 'Одинока папка. Вона нічого не вирішує.'),
@@ -147,9 +151,11 @@ let currentFolder = fileSystem;
 const history = [];
 let pendingFolder = null;
 let currentTextHintFile = null;
+let counterShakeState = null;
 
 CounterManager.setPageMaxLimit(pageMaxMandarins);
 CounterManager.updateCounterDisplay(counterDisplay);
+setupCounterShake();
 restoreRevealedFiles();
 renderFolder();
 
@@ -246,6 +252,11 @@ function getCurrentPath() {
 }
 
 function openFile(file) {
+    if (file.redirectTo) {
+        window.location.href = file.redirectTo;
+        return;
+    }
+
     viewerCaption.textContent = file.name;
     currentTextHintFile = null;
     buyTextHintBtn.classList.add('is-hidden');
@@ -366,3 +377,85 @@ passwordModal.addEventListener('click', function(event) {
         closePasswordModal();
     }
 });
+
+function setupCounterShake() {
+    const counter = counterDisplay.closest('.mandarin-counter');
+
+    if (!counter || localStorage.getItem(shakenMandarinKey) === 'true') {
+        return;
+    }
+
+    counter.classList.add('shakeable-counter');
+
+    counter.addEventListener('pointerdown', function(event) {
+        counter.setPointerCapture(event.pointerId);
+        counterShakeState = {
+            startX: event.clientX,
+            startY: event.clientY,
+            lastX: event.clientX,
+            lastY: event.clientY,
+            directionChanges: 0,
+            lastDirection: 0
+        };
+        counter.classList.add('is-dragging');
+    });
+
+    counter.addEventListener('pointermove', function(event) {
+        if (!counterShakeState) {
+            return;
+        }
+
+        const deltaX = event.clientX - counterShakeState.lastX;
+        const direction = Math.sign(deltaX);
+
+        if (Math.abs(deltaX) > 12 && direction !== 0 && direction !== counterShakeState.lastDirection) {
+            counterShakeState.directionChanges += 1;
+            counterShakeState.lastDirection = direction;
+        }
+
+        counter.style.transform = `translate(${event.clientX - counterShakeState.startX}px, ${event.clientY - counterShakeState.startY}px)`;
+        counterShakeState.lastX = event.clientX;
+        counterShakeState.lastY = event.clientY;
+
+        if (counterShakeState.directionChanges >= 6) {
+            dropMandarinFromCounter(counter);
+        }
+    });
+
+    counter.addEventListener('pointerup', function() {
+        resetCounterDrag(counter);
+    });
+
+    counter.addEventListener('pointercancel', function() {
+        resetCounterDrag(counter);
+    });
+}
+
+function resetCounterDrag(counter) {
+    counterShakeState = null;
+    counter.classList.remove('is-dragging');
+    counter.style.transform = '';
+}
+
+function dropMandarinFromCounter(counter) {
+    if (localStorage.getItem(shakenMandarinKey) === 'true') {
+        resetCounterDrag(counter);
+        return;
+    }
+
+    localStorage.setItem(shakenMandarinKey, 'true');
+    CounterManager.incrementCount();
+    CounterManager.updateCounterDisplay(counterDisplay);
+    counter.classList.remove('shakeable-counter');
+    counter.classList.add('mandarin-dropped');
+    resetCounterDrag(counter);
+
+    const droppedMandarin = document.createElement('div');
+    droppedMandarin.className = 'dropped-mandarin';
+    droppedMandarin.textContent = '🍊';
+    document.body.appendChild(droppedMandarin);
+
+    setTimeout(function() {
+        droppedMandarin.remove();
+    }, 1600);
+}

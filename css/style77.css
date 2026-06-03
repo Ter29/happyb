@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #101318;
+    color: #eef3ff;
+    font-family: Arial, sans-serif;
+}
+
+.mandarin-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+
+.counter-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-width: 96px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.double-game {
+    width: min(980px, calc(100vw - 32px));
+    margin: 96px auto 40px;
+}
+
+.game-header {
+    margin-bottom: 28px;
+}
+
+.game-header h1 {
+    font-size: clamp(42px, 8vw, 76px);
+    margin-bottom: 8px;
+}
+
+.game-header p {
+    color: #aeb7c8;
+    font-size: 20px;
+}
+
+.wheel-shell {
+    position: relative;
+    padding: 18px;
+    border: 1px solid #303746;
+    border-radius: 8px;
+    background: #171b22;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.wheel-window {
+    overflow: hidden;
+    border-radius: 8px;
+    background: #0b0e13;
+}
+
+.wheel-track {
+    display: flex;
+    gap: 8px;
+    padding: 18px;
+    will-change: transform;
+}
+
+.wheel-pointer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 24px solid #fff;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.35));
+}
+
+.wheel-tile {
+    flex: 0 0 78px;
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.22);
+}
+
+.wheel-tile.red {
+    background: #d94b4b;
+}
+
+.wheel-tile.black {
+    background: #252b36;
+}
+
+.wheel-tile.green {
+    background: #2fbf71;
+    font-size: 34px;
+}
+
+.bet-panel {
+    margin-top: 22px;
+    padding: 22px;
+    border: 1px solid #303746;
+    border-radius: 8px;
+    background: #171b22;
+}
+
+.bet-row {
+    display: grid;
+    grid-template-columns: auto minmax(120px, 1fr) auto auto;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.bet-row label {
+    color: #c7d0df;
+    font-weight: bold;
+}
+
+.bet-row input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #3d4658;
+    border-radius: 6px;
+    background: #101318;
+    color: #eef3ff;
+    font-size: 18px;
+}
+
+.quick-btn,
+.spin-btn,
+.choice-btn {
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.quick-btn {
+    padding: 12px 16px;
+    background: #2a3140;
+}
+
+.choice-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.choice-btn {
+    min-height: 76px;
+    padding: 12px;
+    font-size: 24px;
+    border: 2px solid transparent;
+}
+
+.choice-btn span {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    opacity: 0.82;
+}
+
+.choice-btn.selected {
+    border-color: #fff;
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.28);
+}
+
+.red-choice {
+    background: #d94b4b;
+}
+
+.black-choice {
+    background: #252b36;
+}
+
+.green-choice {
+    background: #2fbf71;
+}
+
+.spin-btn {
+    width: 100%;
+    min-height: 56px;
+    background: #f08a24;
+    color: #171b22;
+    font-size: 22px;
+}
+
+.spin-btn:disabled,
+.quick-btn:disabled,
+.choice-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.result-text {
+    min-height: 28px;
+    margin-top: 16px;
+    color: #c7d0df;
+    text-align: center;
+    font-size: 18px;
+}
+
+@media (max-width: 620px) {
+    .bet-row,
+    .choice-row {
+        grid-template-columns: 1fr;
+    }
+
+    .double-game {
+        margin-top: 88px;
+    }
+}
